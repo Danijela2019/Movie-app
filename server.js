@@ -3,7 +3,7 @@ const fetch = require('node-fetch');
 const bodyParser = require('body-parser');
 
 const server = express();
-const port = 4000;
+const port =  process.env.PORT || 4000;
 require('dotenv').config();
 
 server.use(express.static(`${__dirname}/public`));
