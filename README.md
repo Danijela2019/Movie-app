@@ -11,3 +11,5 @@ The application is build using only vanilla javaScript and the express framework
 - **Clone the repo: git@github.com:Danijela2019/Movie-app.git**
 - **Install packages: npm install**
 - **Open your browser at: [Localhost](http://localhost:4000)**
+
+-**Or you can open the app [here](https://mymoviesapp.glitch.me/)**
