@@ -11,7 +11,9 @@ const handleErrors = (res) => {
 };
 
 const errorText = (error) => {
-  document.getElementById('wrongtitle').innerHTML = `<h3>'Ooops..something went wrong: ${error}</h3>`;
+  document.getElementById(
+    'wrongtitle',
+  ).innerHTML = `<h3>'Ooops..something went wrong: ${error}</h3>`;
 };
 
 const renderSearchedMovie = (searchData) => {
@@ -54,7 +56,9 @@ form.addEventListener('submit', (e) => {
           renderSearchedMovie(data);
           input.value = '';
         } else {
-          document.getElementById('wrongtitle').innerHTML = `<h3>Hmm 🤔...something went wrong. ${data.Error}</h3>`;
+          document.getElementById(
+            'wrongtitle',
+          ).innerHTML = `<h3>Hmm 🤔...something went wrong. ${data.Error}</h3>`;
         }
       })
       .catch((err) => errorText(err));
@@ -63,43 +67,22 @@ form.addEventListener('submit', (e) => {
   }
 });
 
-const renderPopularMovies = (popularData) => {
-  const popularMovies = document.querySelector('#popular');
+const renderMoviesList = (movieData, renderList) => {
   for (let a = 0; a < 10; a += 1) {
-    const popularMarkup = `<li class="popular-card">
+    const Markup = `<li class="popular-card">
         <div class="flip-card">
           <div class="flip-card-inner">
             <div class="flip-card-front">
-              <img src=https://image.tmdb.org/t/p/w200/${popularData[a].poster_path}>
+              <img src=https://image.tmdb.org/t/p/w200/${movieData[a].poster_path}>
             </div>
             <div class="flip-card-back">
-              <h1 class="flip-card-title">${popularData[a].title}</h1>
-              <p class="flip-card-text">${popularData[a].overview}</p>
+              <h1 class="flip-card-title">${movieData[a].title}</h1>
+              <p class="flip-card-text">${movieData[a].overview}</p>
           </div>
           </div>
         </div>
       </li>`;
-    popularMovies.insertAdjacentHTML('beforeend', popularMarkup);
-  }
-};
-
-const renderUpcomigMovies = (upcomingData) => {
-  const upcomingMovies = document.querySelector('#upcoming');
-  for (let i = 0; i < 10; i += 1) {
-    const upcomingMarkup = `<li class="upcomming-card">
-      <div class="flip-card">
-        <div class="flip-card-inner">
-          <div class="flip-card-front">
-          <img src=https://image.tmdb.org/t/p/w200/${upcomingData[i].poster_path}>
-          </div>
-          <div class="flip-card-back">
-            <h1 class="flip-card-title">${upcomingData[i].title}</h1>
-            <p class="flip-card-text">${upcomingData[i].overview}</p>
-          </div>
-        </div>
-      </div>
-    <li>`;
-    upcomingMovies.insertAdjacentHTML('beforeend', upcomingMarkup);
+    renderList.insertAdjacentHTML('beforeend', Markup);
   }
 };
 
@@ -110,8 +93,10 @@ const fetchMovies = () => {
     .then((finaldata) => {
       const popularData = finaldata.popular.results;
       const upcomingData = finaldata.upcoming.results;
-      renderPopularMovies(popularData);
-      renderUpcomigMovies(upcomingData);
+      const popularMovies = document.querySelector('#popular');
+      const upcomingMovies = document.querySelector('#upcoming');
+      renderMoviesList(popularData, popularMovies);
+      renderMoviesList(upcomingData, upcomingMovies);
     })
     .catch((err) => errorText(err));
 };

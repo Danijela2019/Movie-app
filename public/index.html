@@ -1,43 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="./style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
-  <script defer src="./index.js"></script>
-  <title>Movies</title>
-</head>
-<body>
-  <header class="top-banner">
-    <h1 class="top-banner__heading">My movie app</h1>
-  </header>
-  <main>
-    <form class="form-field" id="form" action="/api" method="POST">
-      <input class="form-field__input"id="form-input" type="text" name="movieinput" placeholder="Search for a movie">
-      <input class="form-field__button" type="submit" value="GO">
-    </form>
-    <div class = "wrong-title-text" id="wrongtitle"></div>
-    <article class="main-content">
-      <section class="search-section" id="movies">
-      </section>
-      <aside class="favorites" id="favorites">
-        <h3 class="favorites__header">My favorites</h3>
-        <ul class="favorites__list"id="favorites-ul"></ul>
-      </aside>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <script defer src="./index.js"></script>
+    <title>Movies</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <header class="top-banner">
+      z
+      <h1 class="top-banner__heading">My movie app</h1>
+    </header>
+    <main>
+      <form class="form-field" id="form" action="/api" method="POST">
+        <input
+          class="form-field__input"
+          id="form-input"
+          type="text"
+          name="movieinput"
+          placeholder="Search for a movie"
+        />
+        <input class="form-field__button" type="submit" value="GO" />
+      </form>
+      <div class="wrong-title-text" id="wrongtitle"></div>
+      <article class="main-content">
+        <section class="search-section" id="movies"></section>
+        <aside class="favorites" id="favorites">
+          <h3 class="favorites__header">My favorites</h3>
+          <ul class="favorites__list" id="favorites-ul"></ul>
+        </aside>
       </article>
       <section class="most-popular">
-        <h1 class ="most-popular__header">Popular movies</h1>
+        <h1 class="most-popular__header">Popular movies</h1>
         <ul class="most-popular__list" id="popular"></ul>
       </section>
       <section class="upcoming-section">
-        <h1 class= "upcoming__header">Upcoming movies</h1>
+        <h1 class="upcoming__header">Upcoming movies</h1>
         <ul class="upcoming__list" id="upcoming"></ul>
       </section>
-  </main>
-</body>
+    </main>
+  </body>
 </html>
-
-
