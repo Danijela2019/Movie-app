@@ -11,7 +11,7 @@ server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
 
 function fetchMovies(res) {
-  const apikey2 = process.env.API_KEY2;
+  const apikey2 = process.env.API_KEYS;
   const popularMoviesUrl = fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apikey2}&language=en-US&page=1`);
   const upcomingMoviesUrl = fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${apikey2}&language=en-US&page=1`);
   Promise.all([popularMoviesUrl, upcomingMoviesUrl])
