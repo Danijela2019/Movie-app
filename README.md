@@ -12,5 +12,5 @@ The application is build using only vanilla javaScript and the express framework
 - **Install packages: npm install**
 - **Run the 'npm start' command**
 - **Open your browser at: http://localhost:4000**
-- **Or, you can open the app [here](https://mymovieapp.glitch.me/)**
+- **Or, you can open the app on Heroku [here](https://mymovieapp2020.herokuapp.com/)**
  
