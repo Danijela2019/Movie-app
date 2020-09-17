@@ -117,14 +117,19 @@ const renderMovie = (selectedMovie) => {
   list.insertAdjacentHTML('beforeend', favoritesMarkup);
 };
 
-const addFavoriteMovie = () => {
+const addFavoriteMovie = async () => {
   movie = {
     title: document.getElementById('movie-title').innerHTML,
     id: Date.now(),
   };
-  favoriteMoviesArray.push(movie);
-  document.querySelector('#addbutton').remove();
-  clearSearchedMovieSection();
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(movie),
+  };
+  fetch('/data', options);
   renderMovie(movie);
 };
 
