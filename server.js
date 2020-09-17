@@ -6,6 +6,8 @@ const server = express();
 const port = process.env.PORT || 4000;
 require('dotenv').config();
 
+const movieArray = [];
+
 server.use(express.static(`${__dirname}/public`));
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
@@ -44,6 +46,12 @@ function promiceFetchMovie(inputVal, response) {
 server.post('/api', (req, res) => {
   const inputVal = req.body.movieinput;
   promiceFetchMovie(inputVal, res);
+});
+
+server.post('/data', (req, res) => {
+  const favoritesData = req.body;
+  movieArray.push(favoritesData);
+  res.json(movieArray);
 });
 
 server.listen(port, () => {
