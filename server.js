@@ -10,24 +10,24 @@ server.use(express.static(`${__dirname}/public`));
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
 
-function fetchMovies(res) {
+function promiceFetchMovies(response) {
   const apikey2 = process.env.API_KEYS;
   const popularMoviesUrl = fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apikey2}&language=en-US&page=1`);
   const upcomingMoviesUrl = fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${apikey2}&language=en-US&page=1`);
   Promise.all([popularMoviesUrl, upcomingMoviesUrl])
-    .then((res) => Promise.all(res.map((response) => response.json())))
+    .then((res) => Promise.all(res.map((responseApi) => responseApi.json())))
     .then((finaldata) => {
       const popular = finaldata[0];
       const upcoming = finaldata[1];
-      res.json({ popular, upcoming });
+      response.json({ popular, upcoming });
     })
     .catch((error) => console.log(error));
 }
 server.get('/api/movies', (_req, res) => {
-  fetchMovies(res);
+  promiceFetchMovies(res);
 });
 
-function fetchMovie(inputVal, res) {
+function promiceFetchMovie(inputVal, response) {
   const apikey = process.env.API_KEY;
   const url = `http://www.omdbapi.com/?apikey=${apikey}&t=${inputVal}`;
   fetch(url)
@@ -38,12 +38,12 @@ function fetchMovie(inputVal, res) {
       return res;
     })
     .then((res) => res.json())
-    .then((data) => res.json(data))
+    .then((data) => response.json(data))
     .catch((error) => console.log(error));
 }
 server.post('/api', (req, res) => {
   const inputVal = req.body.movieinput;
-  fetchMovie(inputVal, res);
+  promiceFetchMovie(inputVal, res);
 });
 
 server.listen(port, () => {
