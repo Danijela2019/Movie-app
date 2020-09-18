@@ -11,7 +11,7 @@ server.use(express.static(`${__dirname}/public`));
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
 
-function promiceFetchMovies(response) {
+function promiseFetchMovies(response) {
   const apikey2 = process.env.API_KEYS;
   const popularMoviesUrl = fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apikey2}&language=en-US&page=1`);
   const upcomingMoviesUrl = fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${apikey2}&language=en-US&page=1`);
@@ -25,10 +25,10 @@ function promiceFetchMovies(response) {
     .catch((error) => console.log(error));
 }
 server.get('/api/movies', (_req, res) => {
-  promiceFetchMovies(res);
+  promiseFetchMovies(res);
 });
 
-function promiceFetchMovie(inputVal, response) {
+function promiseFetchMovie(inputVal, response) {
   const apikey = process.env.API_KEY;
   const url = `http://www.omdbapi.com/?apikey=${apikey}&t=${inputVal}`;
   fetch(url)
@@ -44,13 +44,15 @@ function promiceFetchMovie(inputVal, response) {
 }
 server.post('/api', (req, res) => {
   const inputVal = req.body.movieinput;
-  promiceFetchMovie(inputVal, res);
+  promiseFetchMovie(inputVal, res);
 });
 
 server.post('/data', async (req, res) => {
   const favoritesData = req.body;
-  console.log('This is what I sent', await fileOperations(favoritesData));
-  res.json(await fileOperations(favoritesData));
+  res.json(await fileOperations.fileOperations(favoritesData));
+});
+server.get('/data', async (_req, res) => {
+  res.json(await fileOperations.fileRead());
 });
 
 server.listen(port, () => {

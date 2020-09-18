@@ -100,22 +100,31 @@ const fetchMovies = () => {
     })
     .catch((err) => errorText(err));
 };
-// fetchMovies();
+fetchMovies();
 
 const removeFavoriteMovie = (key) => {
   const item = document.querySelector(`[data-key='${key}']`);
   favoriteMoviesArray.splice(favoriteMoviesArray.indexOf(item), 1);
   item.remove();
 };
-
-/* const renderMovie = (selectedMovie) => {
-  const favoritesMarkup = `<li class="favorite-list" data-key="${selectedMovie.id}">
-    <h4 class="favorite-title">${selectedMovie.title}</h4>
+const loadFavoritesList = (favData) => {
+  for (let i = 0; i < favData.favoritesList.length; i += 1) {
+    const favoritesMarkup = `<li class="favorite-list" data-key="${favData.favoritesList[i].id}">
+    <h4 class="favorite-title">${favData.favoritesList[i].title}</h4>
     <button class="favorite-remove">X</button>
     </li>`;
+    list.insertAdjacentHTML('beforeend', favoritesMarkup);
+  }
+};
 
+const addMovieToFavorites = (favData) => {
+  const i = favData.favoritesList.length - 1;
+  const favoritesMarkup = `<li class="favorite-list" data-key="${favData.favoritesList[i].id}">
+    <h4 class="favorite-title">${favData.favoritesList[i].title}</h4>
+    <button class="favorite-remove">X</button>
+    </li>`;
   list.insertAdjacentHTML('beforeend', favoritesMarkup);
-}; */
+};
 
 const addFavoriteMovie = () => {
   movie = {
@@ -129,14 +138,25 @@ const addFavoriteMovie = () => {
     },
     body: JSON.stringify(movie),
   };
-
   fetch('/data', options)
     .then(handleErrors)
     .then((res) => res.json())
-    .then((data) => console.log('DATA', data))
-  // renderMovie(movie);
+    .then((favData) => {
+      addMovieToFavorites(favData);
+    })
     .catch((err) => errorText(err));
 };
+
+const renderFavoritesList = () => {
+  fetch('/data')
+    .then(handleErrors)
+    .then((res) => res.json())
+    .then((favData) => {
+      loadFavoritesList(favData);
+    })
+    .catch((err) => errorText(err));
+};
+renderFavoritesList();
 
 list.addEventListener('click', (event) => {
   event.stopImmediatePropagation();
