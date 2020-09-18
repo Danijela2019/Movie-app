@@ -1,20 +1,23 @@
-const fs = require('fs');
+const fsPromises = require('fs').promises;
 
-const fileOperation = (data) => {
-  let favoritesListFile = [];
-
-  fs.readFile('dbFavorites.json', 'utf8', (readFileErr, movieData) => {
-    if (readFileErr) throw readFileErr;
-    favoritesListFile = JSON.parse(movieData);
-    favoritesListFile.favoritesList.push(data);
-    const json = JSON.stringify(favoritesListFile, null, 2);
-
-    fs.writeFile('dbFavorites.json', json, 'utf8', (writeFileErr) => {
-      if (writeFileErr) throw writeFileErr;
-      console.log('favoritesListFile saved successfully!');
-    });
+const fileRead = async () => {
+  const filePromise = await fsPromises.readFile('dbFavorites.json', 'utf8', (err) => {
+    if (err) throw err;
   });
-  return favoritesListFile;
+  return filePromise;
 };
- 
-module.exports = fileOperation;
+
+const fileOperations = async (data) => {
+  const file = await fileRead();
+  const parsedFile = JSON.parse(file);
+  parsedFile.favoritesList.push(data);
+  const json = JSON.stringify(parsedFile, null, 2);
+
+  await fsPromises.writeFile('dbFavorites.json', json, 'utf8', (err) => {
+    if (err) throw err;
+  });
+  console.log('This is the file', parsedFile);
+  return parsedFile;
+};
+
+module.exports = fileOperations;
