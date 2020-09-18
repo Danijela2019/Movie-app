@@ -1,7 +1,7 @@
 const express = require('express');
 const fetch = require('node-fetch');
 const bodyParser = require('body-parser');
-const fileOperation = require('./util');
+const fileOperations = require('./util');
 
 const server = express();
 const port = process.env.PORT || 4000;
@@ -47,10 +47,10 @@ server.post('/api', (req, res) => {
   promiceFetchMovie(inputVal, res);
 });
 
-server.post('/data', (req, res) => {
+server.post('/data', async (req, res) => {
   const favoritesData = req.body;
-  console.log('Favorites Data', favoritesData);
-  res.json(fileOperation(favoritesData));
+  console.log('This is what I sent', await fileOperations(favoritesData));
+  res.json(await fileOperations(favoritesData));
 });
 
 server.listen(port, () => {

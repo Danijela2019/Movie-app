@@ -108,16 +108,16 @@ const removeFavoriteMovie = (key) => {
   item.remove();
 };
 
-const renderMovie = (selectedMovie) => {
+/* const renderMovie = (selectedMovie) => {
   const favoritesMarkup = `<li class="favorite-list" data-key="${selectedMovie.id}">
     <h4 class="favorite-title">${selectedMovie.title}</h4>
     <button class="favorite-remove">X</button>
     </li>`;
 
   list.insertAdjacentHTML('beforeend', favoritesMarkup);
-};
+}; */
 
-const addFavoriteMovie = async () => {
+const addFavoriteMovie = () => {
   movie = {
     title: document.getElementById('movie-title').innerHTML,
     id: Date.now(),
@@ -129,8 +129,13 @@ const addFavoriteMovie = async () => {
     },
     body: JSON.stringify(movie),
   };
-  fetch('/data', options);
-  renderMovie(movie);
+
+  fetch('/data', options)
+    .then(handleErrors)
+    .then((res) => res.json())
+    .then((data) => console.log('DATA', data))
+  // renderMovie(movie);
+    .catch((err) => errorText(err));
 };
 
 list.addEventListener('click', (event) => {
