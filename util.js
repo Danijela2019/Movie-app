@@ -4,20 +4,19 @@ const fileRead = async () => {
   const filePromise = await fsPromises.readFile('dbFavorites.json', 'utf8', (err) => {
     if (err) throw err;
   });
-  return filePromise;
-};
-
-const fileOperations = async (data) => {
-  const file = await fileRead();
-  const parsedFile = JSON.parse(file);
-  parsedFile.favoritesList.push(data);
-  const json = JSON.stringify(parsedFile, null, 2);
-
-  await fsPromises.writeFile('dbFavorites.json', json, 'utf8', (err) => {
-    if (err) throw err;
-  });
-  console.log('This is the file', parsedFile);
+  const parsedFile = JSON.parse(filePromise);
   return parsedFile;
 };
 
-module.exports = fileOperations;
+const fileOperations = async (data) => {
+  const parsedFile = await fileRead();
+  parsedFile.favoritesList.push(data);
+  const json = JSON.stringify(parsedFile, null, 2);
+  await fsPromises.writeFile('dbFavorites.json', json, 'utf8', (err) => {
+    if (err) throw err;
+  });
+  return parsedFile;
+};
+
+module.exports.fileOperations = fileOperations;
+module.exports.fileRead = fileRead;
