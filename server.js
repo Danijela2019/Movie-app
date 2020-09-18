@@ -1,12 +1,11 @@
 const express = require('express');
 const fetch = require('node-fetch');
 const bodyParser = require('body-parser');
+const fileOperation = require('./util');
 
 const server = express();
 const port = process.env.PORT || 4000;
 require('dotenv').config();
-
-const movieArray = [];
 
 server.use(express.static(`${__dirname}/public`));
 server.use(bodyParser.urlencoded({ extended: false }));
@@ -50,8 +49,8 @@ server.post('/api', (req, res) => {
 
 server.post('/data', (req, res) => {
   const favoritesData = req.body;
-  movieArray.push(favoritesData);
-  res.json(movieArray);
+  console.log('Favorites Data', favoritesData);
+  res.json(fileOperation(favoritesData));
 });
 
 server.listen(port, () => {
