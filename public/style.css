@@ -40,7 +40,7 @@ body  {
 }
 .form-field__button {
   cursor: pointer;
-  height: 2rem;
+  height: 2.4rem;
   padding-left: .5rem;
   padding-right: .5rem;
   border-radius:5px;
@@ -140,6 +140,9 @@ body  {
   list-style-type: none;
   padding:0;
 }
+.upcoming__list {
+margin-bottom: 1.8rem;
+}
 /*MOVIE CARD----*/
 .popular-card {
   margin-top: 1rem;
@@ -197,6 +200,19 @@ body  {
 .flip-card-title {
   margin-top: .5rem;
   font-family: 'Oswald', sans-serif;
+}
+.copyright{
+  position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   color: white;
+   text-align: center;
+  background-color:black;
+  padding: .2rem;
+}
+.copyright:before {
+  content: '\00a9';
 }
 /*-----MEDIA----*/
 @media only screen and (min-width: 870px) {
