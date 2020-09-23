@@ -17,14 +17,29 @@ body  {
 }
 
 /*----TOP BANNER---*/
+.top-banner__navBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  background-color: black;
+}
 .top-banner__heading {
   font-family: 'Concert One', cursive;
-  font-size:2.5rem;
-  text-align: center;
-  margin-bottom: 1.5rem;
-  margin-top: 1rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
 }
+.top-baner__home,
+.top-baner__login,
+.top-baner__about {
+  padding: 1rem;
+  text-decoration: none;
+  font-size: 1.4rem;
+  padding-left: 4rem;
+  color: antiquewhite;
 
+}
 /*----FORMFIELD-----*/
 .form-field {
   display: flex;

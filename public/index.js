@@ -100,7 +100,7 @@ const fetchMovies = () => {
     })
     .catch((err) => errorText(err));
 };
-fetchMovies();
+//fetchMovies();
 
 const removeFavoriteMovie = (key) => {
   const item = document.querySelector(`[data-key='${key}']`);
