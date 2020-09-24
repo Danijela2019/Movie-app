@@ -9,6 +9,12 @@ menu, nav, output, section, summary,audio, video {
   box-sizing: border-box;
   font-weight: normal;
   }
+ /* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-weight: normal;
+  }*/
   
  /*BASE----*/
 body  {
@@ -20,23 +26,20 @@ body  {
 .top-banner__navBar {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  padding-left: 1rem;
+  justify-content:space-between;
   margin-bottom: 1rem;
   background-color: black;
 }
 .top-banner__heading {
   font-family: 'Concert One', cursive;
-  font-size: 1rem;
-  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  margin: 0.5rem;
 }
 .top-baner__home,
 .top-baner__login,
 .top-baner__about {
   padding: 1rem;
   text-decoration: none;
-  font-size: 1.4rem;
-  padding-left: 4rem;
   color: antiquewhite;
 
 }
@@ -237,8 +240,8 @@ margin-bottom: 1.8rem;
     width: 80%;
   }
   .top-banner__heading {
-    margin-top:1rem;
-    font-size:3.5rem ;
+    margin-top: 1rem;
+    font-size: 2rem ;
   }
   .search-section__info {
     margin-left: 1rem;
@@ -286,5 +289,13 @@ margin-bottom: 1.8rem;
   .favorite-list {
   margin-bottom: 1rem;
   }
+  .top-baner__home,
+  .top-baner__login,
+  .top-baner__about {
+    font-size: 1.4rem;
+    padding-left: 10rem;
+  }
 }
+
+
 
