@@ -27,6 +27,12 @@ function promiseFetchMovies(response) {
 server.get('/api/movies', (_req, res) => {
   promiseFetchMovies(res);
 });
+server.get('/api/about', (_req, res) => {
+  res.sendFile(`${__dirname}/pages/about.html`);
+});
+server.get('/api/login', (_req, res) => {
+  res.sendFile(`${__dirname}/pages/login.html`);
+});
 
 function promiseFetchMovie(inputVal, response) {
   const apikey = process.env.API_KEY;

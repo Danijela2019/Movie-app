@@ -122,6 +122,7 @@ body  {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin: .5rem;
 }
 
 .favorite-remove {
@@ -225,6 +226,30 @@ margin-bottom: 1.8rem;
 .copyright:before {
   content: '\00a9';
 }
+/*-----ABOUT----*/
+.about-container{
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  align-items: center;
+}
+.about-header{
+  font-family: 'Concert One', cursive;
+  font-size: 1.5rem;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+}
+.about-paragraph{
+  font-family: 'Oswald', sans-serif;
+} 
+.about-image{
+  width: 200px;
+  height: 120px;
+  margin: 1rem;
+}
+.anchor-SALT{
+  text-decoration: none;
+}
 /*-----MEDIA----*/
 @media only screen and (min-width: 870px) {
   .search-section {
@@ -242,6 +267,7 @@ margin-bottom: 1.8rem;
   .form-field {
     display: flex;
     justify-content:center;
+    margin-top: 2rem;
   }
   .search-section__list{
     font-size: 1.2rem;
@@ -294,6 +320,15 @@ margin-bottom: 1.8rem;
   }
   .movie-icon{
     padding: .5rem;
+  }
+  .about-header{
+    font-size: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .about-image{
+    width: 500px;
+    height: 300px;
   }
 }
 
