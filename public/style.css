@@ -33,6 +33,7 @@ body  {
 .top-baner__home,
 .top-baner__login,
 .top-baner__about {
+  font-family: 'Oswald', sans-serif;
   padding: .5rem;
   text-decoration: none;
   color: antiquewhite;
@@ -87,7 +88,9 @@ body  {
   margin-bottom: 1rem;
   font-family: 'Oswald', sans-serif;
 }
-.search-section__button {
+.search-section__button,
+.login-field__button,
+.login-field__cancelbutton {
   cursor: pointer;
   height: 2rem;
   padding-left: .5rem;
@@ -250,6 +253,36 @@ margin-bottom: 1.8rem;
 .anchor-SALT{
   text-decoration: none;
 }
+/*-----LOGIN PAGE----*/
+.login-container{
+  display: flex;
+  flex-direction: column;
+  align-items: space-around;
+}
+.login-form__section{
+  margin: auto;
+  border: 1px solid whitesmoke;
+  border-radius: 5px;
+  align-items: center;
+  
+}
+.login-field__inputname,
+.login-field__inputpassword{
+width: 18rem;
+height: 2rem;
+margin: .5rem;
+border-radius: 5px;
+}
+.login-buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: .5rem;
+  margin-top: 3rem;
+}
+
+
+
 /*-----MEDIA----*/
 @media only screen and (min-width: 870px) {
   .search-section {
@@ -329,6 +362,20 @@ margin-bottom: 1.8rem;
   .about-image{
     width: 500px;
     height: 300px;
+  }
+  .login-field__inputname,
+  .login-field__inputpassword{
+    width: 18rem;
+    margin: 1rem;
+  }
+  .login-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .login-buttons{
+    margin: 1rem;
+    margin-top: 5rem;
   }
 }
 
