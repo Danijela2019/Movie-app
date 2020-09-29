@@ -20,6 +20,7 @@ body  {
 .top-banner__navBar {
   display: flex;
   flex-direction: row;
+  align-items: baseline;
   justify-content:space-around;
   margin-bottom: 1rem;
   background-color: black;
