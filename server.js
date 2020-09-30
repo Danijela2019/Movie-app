@@ -61,6 +61,9 @@ server.get('/data', async (_req, res) => {
   res.json(await fileOperations.fileRead());
 });
 
+server.get('*', (_req, res) => {
+  res.status(404).sendFile(`${__dirname}/pages/NotFound.html`);
+});
 server.listen(port, () => {
   console.log(`Server listening at ${port}`);
 });
