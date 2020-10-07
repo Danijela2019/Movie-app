@@ -16,23 +16,31 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap"
       rel="stylesheet"
     />
-    <script src="https://kit.fontawesome.com/ec8d7c50e9.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/ec8d7c50e9.js"
+      crossorigin="anonymous"
+    ></script>
     <script defer src="./index.js"></script>
     <title>Movies</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
   </head>
   <body>
-   <header class="top-banner">
-      <nav class="top-banner__navBar">
+    <header class="top-banner">
+      <nav class="top-banner__navBar l-container-row">
         <i class="fas fa-film fa-3x movie-icon"></i>
-        <h1 class="top-banner__heading">My movie app</h1>
-        <a class="active top-baner__home" href="/">Home</a>
-        <a class="top-baner__login" href="/api/login">Login</a>
-        <a class="top-baner__about" href="/api/about">About</a>
-      </nav> 
+        <h1 class="top-banner__heading header">My movie app</h1>
+        <a class="active top-baner__home navBarLink" href="/">Home</a>
+        <a class="top-baner__login navBarLink" href="/api/login">Login</a>
+        <a class="top-baner__about navBarLink" href="/api/about">About</a>
+      </nav>
     </header>
     <main>
-      <form class="form-field" id="form" action="/api" method="POST">
+      <form
+        class="form-field l-container-row"
+        id="form"
+        action="/api"
+        method="POST"
+      >
         <input
           class="form-field__input"
           id="form-input"
@@ -44,21 +52,24 @@
       </form>
       <div class="wrong-title-text" id="wrongtitle"></div>
       <article class="main-content">
-        <section class="search-section" id="movies"></section>
+        <section
+          class="search-section l-container-column"
+          id="movies"
+        ></section>
         <aside class="favorites" id="favorites">
-          <h3 class="favorites__header">My favorites</h3>
-          <ul class="favorites__list" id="favorites-ul"></ul>
+          <h3 class="favorites__header header">My favorites</h3>
+          <ul class="favorites__list l-container-row" id="favorites-ul"></ul>
         </aside>
       </article>
       <section class="most-popular">
-        <h1 class="most-popular__header">Popular movies</h1>
-        <ul class="most-popular__list" id="popular"></ul>
+        <h1 class="most-popular__header header">Popular movies</h1>
+        <ul class="most-popular__list l-container-row" id="popular"></ul>
       </section>
       <section class="upcoming-section">
-        <h1 class="upcoming__header">Upcoming movies</h1>
-        <ul class="upcoming__list" id="upcoming"></ul>
+        <h1 class="upcoming__header header">Upcoming movies</h1>
+        <ul class="upcoming__list l-container-row" id="upcoming"></ul>
       </section>
-      <footer class="copyright"> My movie app</footer> 
+      <footer class="copyright">My movie app</footer>
     </main>
   </body>
 </html>
