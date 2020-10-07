@@ -29,7 +29,7 @@ const renderSearchedMovie = (searchData) => {
         <li>Country: ${searchData.Country}</li>
         <li>Language: ${searchData.Language}</li>
         <li>Plot: ${searchData.Plot}</li>
-        <button class="search-section__button" id="addbutton" onClick="addFavoriteMovie()">Add to favorites</button>
+        <button class="search-section__button btn" id="addbutton" onClick="addFavoriteMovie()">Add to favorites</button>
       <ul>`;
   movieBlock.innerHTML = searchMarkup;
 };
@@ -69,7 +69,7 @@ form.addEventListener('submit', (e) => {
 
 const renderMoviesList = (movieData, renderList) => {
   for (let a = 0; a < 10; a += 1) {
-    const Markup = `<li class="popular-card">
+    const Markup = `<li class="movie-card l-container-row">
         <div class="flip-card">
           <div class="flip-card-inner">
             <div class="flip-card-front">
@@ -111,7 +111,7 @@ const loadFavoritesList = (favData) => {
   for (let i = 0; i < favData.favoritesList.length; i += 1) {
     const favoritesMarkup = `<li class="favorite-list" data-key="${favData.favoritesList[i].id}">
     <h4 class="favorite-title">${favData.favoritesList[i].title}</h4>
-    <button class="favorite-remove">X</button>
+    <button class="favorite-remove btn">X</button>
     </li>`;
     list.insertAdjacentHTML('beforeend', favoritesMarkup);
   }
@@ -121,7 +121,7 @@ const addMovieToFavorites = (favData) => {
   const i = favData.favoritesList.length - 1;
   const favoritesMarkup = `<li class="favorite-list" data-key="${favData.favoritesList[i].id}">
     <h4 class="favorite-title">${favData.favoritesList[i].title}</h4>
-    <button class="favorite-remove">X</button>
+    <button class="favorite-remove btn">X</button>
     </li>`;
   list.insertAdjacentHTML('beforeend', favoritesMarkup);
 };

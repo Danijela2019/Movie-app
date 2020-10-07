@@ -1,9 +1,13 @@
 const fsPromises = require('fs').promises;
 
 const fileRead = async () => {
-  const filePromise = await fsPromises.readFile('dbFavorites.json', 'utf8', (err) => {
-    if (err) throw err;
-  });
+  const filePromise = await fsPromises.readFile(
+    'dbFavorites.json',
+    'utf8',
+    (err) => {
+      if (err) throw err;
+    },
+  );
   const parsedFile = JSON.parse(filePromise);
   return parsedFile;
 };

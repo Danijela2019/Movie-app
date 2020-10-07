@@ -13,8 +13,12 @@ server.use(bodyParser.json());
 
 function promiseFetchMovies(response) {
   const apikey2 = process.env.API_KEYS;
-  const popularMoviesUrl = fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apikey2}&language=en-US&page=1`);
-  const upcomingMoviesUrl = fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${apikey2}&language=en-US&page=1`);
+  const popularMoviesUrl = fetch(
+    `https://api.themoviedb.org/3/movie/popular?api_key=${apikey2}&language=en-US&page=1`,
+  );
+  const upcomingMoviesUrl = fetch(
+    `https://api.themoviedb.org/3/movie/upcoming?api_key=${apikey2}&language=en-US&page=1`,
+  );
   Promise.all([popularMoviesUrl, upcomingMoviesUrl])
     .then((res) => Promise.all(res.map((responseApi) => responseApi.json())))
     .then((finaldata) => {

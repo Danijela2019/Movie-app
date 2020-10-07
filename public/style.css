@@ -1,316 +1,87 @@
-/*RESET-----*/
-html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ol, ul, li,
-fieldset, form, label,article, aside, figure, figcaption, footer, header, 
-menu, nav, output, section, summary,audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
+/*------BASE-----*/
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+img,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+article,
+aside,
+figure,
+figcaption,
+footer,
+header,
+menu,
+nav,
+output,
+section,
+summary,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
   vertical-align: baseline;
   box-sizing: border-box;
   font-weight: normal;
-  }
- 
-/*BASE----*/
-body  {
+}
+
+body {
   background-color: rgb(3, 14, 31);
   color: antiquewhite;
 }
-
-/*----TOP BANNER---*/
-.top-banner__navBar {
-  display: flex;
-  flex-direction: row;
-  align-items: baseline;
-  justify-content:space-around;
-  margin-bottom: 1rem;
-  background-color: black;
-}
-.top-banner__heading {
-  font-family: 'Concert One', cursive;
-  font-size: 1.2rem;
-  margin-top: .5rem;
-  margin-bottom: .5rem;
-}
-.top-baner__home,
-.top-baner__login,
-.top-baner__about {
-  font-family: 'Oswald', sans-serif;
-  padding: .5rem;
-  text-decoration: none;
-  color: antiquewhite;
-  margin-top: .5rem;
-  margin-bottom: .5rem;
-}
-/*----FORMFIELD-----*/
-.form-field {
-  display: flex;
-  justify-content: center;
-}
-.form-field__input {
-  height:2rem;
-  border-radius:5px;
-  text-align: center;
-  margin-bottom: 1rem;
-}
-.form-field__button {
-  cursor: pointer;
-  height: 2.4rem;
-  padding-left: .5rem;
-  padding-right: .5rem;
-  border-radius:5px;
-  margin-bottom: 1rem;
-}
-.wrong-title-text {
-  text-align: center;
-  font-family: 'Oswald', sans-serif;
-  margin-bottom: 1rem;
-}
-
-/*-----THE MOVIE ARTICLE----*/
-.search-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 1rem;
-  border-radius: 10px;
-}
-.search-section__info {
-  font-family: 'Noto Sans JP', sans-serif;
-  margin: .5rem;
-  padding-left: .5rem;
-  list-style-type: none;
-}
-.search-section__img{
-  margin: 1rem;
-  box-shadow: 0 4px 10px 0 rgba(95, 94, 94, 0.2), 0 10px 18px 0 rgba(250, 247, 247, 0.19);
-}
-.search-section__list__title {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  font-family: 'Oswald', sans-serif;
-}
-.search-section__button,
-.login-field__button,
-.login-field__cancelbutton,
-.not-found__button {
+.btn {
   cursor: pointer;
   height: 2rem;
-  padding-left: .5rem;
-  padding-right: .5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   border-radius: 5px;
   margin-bottom: 1rem;
   margin-top: 1rem;
-  margin-left: .5rem;
+  margin-left: 0.5rem;
 }
-
-/*----FAVORITES----*/
-.favorites {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  border: 1px solid #444244;
-  border-radius: 10px;
-  background-color: rgb(8, 8, 8);
-  margin: 1rem;
-}
-.favorites__list {
-  list-style-type: none;
-}
-.favorites__header {
-  font-family: 'Concert One', cursive;
-  text-align: center;
-}
-.favorite-title{
-  font-family: 'Noto Sans JP', sans-serif; 
-  text-align: center;
-}
-.favorite-list {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: .5rem;
-}
-
-.favorite-remove {
-  width: 30px;
-  height: 30px;
-  margin-left: 2rem;
-  font-size:1rem;
-  color: rgb(248, 246, 246);
-  background-color: rgb(206, 86, 31);
-  border-radius: 5px;
-}
-
-/*----MOST POPULAR/UPCOMING SECTION---*/
-.most-popular__header,
-.upcoming__header {
-  font-family: 'Concert One', cursive;
-  
-  margin-top: 1rem;
-  text-align: center;
-}
-.most-popular__list,
-.upcoming__list  {
-  display:flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  list-style-type: none;
-  padding:0;
-}
-.upcoming__list {
-margin-bottom: 1.8rem;
-}
-/*MOVIE CARD----*/
-.popular-card {
-  margin-top: 1rem;
-  list-style-type: none;
-  box-shadow: 0 4px 10px 0 rgba(95, 94, 94, 0.2), 0 10px 18px 0 rgba(250, 247, 247, 0.19);
-  margin:.5rem;
-  display: flex;
-  justify-content: center;
-  padding:  1rem;
-  border-radius: 10px;
-}
-.flip-card {
-  background-color: transparent;
-  width: 200px;
-  height: 300px;
-  border: 1px solid #03024e;
-  perspective: 1000px; 
-}
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
-}
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
-.flip-card-front, .flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden; 
-  backface-visibility: hidden;
-}
-.flip-card-front {
-  background-color: rgb(15, 4, 4);
-  color: rgb(8, 11, 15);
-}
-.flip-card-back {
-  background-color: rgb(8, 11, 15);
-  color: white;
-  transform: rotateY(180deg);
-}
-.flip-card-text{
-  padding-top: .5rem;
-  padding-left: .2rem;
-  padding-right: .2rem;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 10;
-  -webkit-box-orient: vertical;
-}
-.flip-card-title {
-  margin-top: .5rem;
-  font-family: 'Oswald', sans-serif;
-}
-.copyright{
-  position: fixed;
-   left: 0;
-   bottom: 0;
-   width: 100%;
-   color: white;
-   text-align: center;
-  background-color:black;
-  padding: .2rem;
-}
-.copyright:before {
-  content: '\00a9';
-}
-/*-----ABOUT----*/
-.about-container{
-  display: flex;
-  flex-direction: column;
-  margin: 1rem;
-  align-items: center;
-}
-.about-header{
-  font-family: 'Concert One', cursive;
-  font-size: 1.5rem;
-  margin-top: .5rem;
-  margin-bottom: .5rem;
-}
-.about-paragraph{
-  font-family: 'Oswald', sans-serif;
-} 
-.about-image{
-  width: 200px;
-  height: 120px;
-  margin: 1rem;
-} 
-.about-movie-block{
-display: flex;
-flex-direction: row;
-align-items: center;
-margin-top: 1rem;
-}
-
-.anchor-SALT{
+.anchor {
   text-decoration: none;
 }
-/*-----LOGIN PAGE----*/
-.login-container{
+.header {
+  font-family: "Concert One", cursive;
+}
+
+/*-----LAYOUT-----*/
+.l-container-column {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.login-form__section{
-  border: 1px solid whitesmoke;
-  border-radius: 5px;
-  align-items: center;
-}
-.login-field__inputname,
-.login-field__inputpassword{
-width: 18rem;
-height: 2rem;
-margin: .5rem;
-border-radius: 5px;
-text-align: center;
-}
-.login-buttons{
+.l-container-row {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  margin: .5rem;
-  margin-top: 3rem;
 }
-
-/*---MASONRY---*/
-.login-image__section{
-  background-color:black;
-  padding:.1rem;
+.l-container-grid {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(8, 1fr);
-  row-gap: .1rem;
-  column-gap: .1rem;
-  box-shadow: 0 4px 10px 0 rgba(95, 94, 94, 0.2), 0 10px 18px 0 rgba(250, 247, 247, 0.19);
-  margin: 1rem;
+  row-gap: 0.1rem;
+  column-gap: 0.1rem;
 }
 
-img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.item--1 {   
-  grid-column: 1 / 4;   
-  grid-row: 1 / 5; 
+/*---LOGIN PAGE Grid LAYOUT---*/
+.item--1 {
+  grid-column: 1 / 4;
+  grid-row: 1 / 5;
 }
 .item--2 {
   grid-column: 4 / 6;
@@ -324,7 +95,6 @@ img {
   grid-column: 8 / 11;
   grid-row: 1 / 5;
 }
-
 .item--5 {
   grid-column: 1/ 4;
   grid-row: 5/ 9;
@@ -342,24 +112,280 @@ img {
   grid-row: 5/ 9;
 }
 
-/*----NOT FOUND-----*/
-.not-found__container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top:4rem;
-  margin-left:2rem;
+/*----MODULES---*/
+
+/*----HEADER---*/
+.about-header,
+.top-banner_heading {
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.favorites__header,
+.most-popular__header,
+.upcoming__header {
+  text-align: center;
+}
+.most-popular__header,
+.upcoming__header {
+  margin-top: 1rem;
 }
 
-.not-found__anchor-tag{
-  text-decoration: none;
-  color:black;
+/*-----WRONG TITLE TEXT----*/
+.wrong-title-text {
+  text-align: center;
+  font-family: "Oswald", sans-serif;
+  margin-bottom: 1rem;
 }
-.not-found__img{
+
+/*-----NAVIGATION BAR----*/
+.top-banner__navBar {
+  align-items: baseline;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+  background-color: black;
+}
+.top-baner__home,
+.top-baner__login,
+.top-baner__about {
+  font-family: "Oswald", sans-serif;
+  padding: 0.5rem;
+  text-decoration: none;
+  color: antiquewhite;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/*----FORMFIELD-----*/
+.form-field {
+  justify-content: center;
+}
+.form-field__input {
+  height: 2rem;
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.form-field__button {
+  height: 2.2rem;
+  margin-left: 1rem;
+}
+
+/*-----THE MOVIE ARTICLE----*/
+.search-section {
+  align-items: center;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+}
+.search-section__info {
+  font-family: "Noto Sans JP", sans-serif;
+  margin: 0.5rem;
+  padding-left: 0.5rem;
+  list-style-type: none;
+}
+.search-section__img {
+  margin: 1rem;
+  box-shadow: 0 4px 10px 0 rgba(95, 94, 94, 0.2),
+    0 10px 18px 0 rgba(250, 247, 247, 0.19);
+}
+.search-section__list__title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-family: "Oswald", sans-serif;
+}
+
+/*----FAVORITES SECTION----*/
+.favorites {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border: 1px solid #444244;
+  border-radius: 10px;
+  background-color: rgb(8, 8, 8);
+  margin: 1rem;
+}
+.favorite-title {
+  font-family: "Noto Sans JP", sans-serif;
+  text-align: center;
+}
+.favorite-list {
+  justify-content: space-between;
+  margin: 0.5rem;
+}
+
+.favorite-remove {
+  width: 30px;
+  height: 30px;
+  margin-left: 2rem;
+  font-size: 1rem;
+  color: rgb(248, 246, 246);
+  background-color: rgb(206, 86, 31);
+  border-radius: 5px;
+}
+
+/*----MOST POPULAR/UPCOMING SECTION---*/
+.most-popular__list,
+.upcoming__list {
+  flex-wrap: wrap;
+  justify-content: space-around;
+  list-style-type: none;
+  padding: 0;
+}
+.upcoming__list {
+  margin-bottom: 1.8rem;
+}
+.movie-card {
+  margin-top: 1rem;
+  list-style-type: none;
+  box-shadow: 0 4px 10px 0 rgba(95, 94, 94, 0.2),
+    0 10px 18px 0 rgba(250, 247, 247, 0.19);
+  margin: 0.5rem;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  border-radius: 10px;
+}
+.flip-card {
+  background-color: transparent;
+  width: 200px;
+  height: 300px;
+  border: 1px solid #03024e;
+  perspective: 1000px;
+}
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.flip-card-front {
+  background-color: rgb(15, 4, 4);
+  color: rgb(8, 11, 15);
+}
+.flip-card-back {
+  background-color: rgb(8, 11, 15);
+  color: white;
+  transform: rotateY(180deg);
+}
+.flip-card-text {
+  padding-top: 0.5rem;
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
+}
+.flip-card-title {
+  margin-top: 0.5rem;
+  font-family: "Oswald", sans-serif;
+}
+/*-----COPYRIGHT---*/
+.copyright {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+  background-color: black;
+  padding: 0.2rem;
+}
+.copyright:before {
+  content: "\00a9";
+}
+
+/*-----ABOUT PARAGRAPH----*/
+.about-paragraph {
+  font-family: "Oswald", sans-serif;
+}
+/*-------ABOUT IMAGE------*/
+.about-image {
+  width: 200px;
+  height: 120px;
+  margin: 1rem;
+}
+/*----ABOUT PAGE CONTAINER---*/
+.about-container {
+  margin: 1rem;
+}
+
+/*----ABOUT MOVIE CONTAINER----*/
+.about-movie-container {
+  align-items: center;
+  margin-top: 1rem;
+}
+
+/*-----LOGIN FORM----*/
+.login-form__section {
+  border: 1px solid whitesmoke;
+  border-radius: 5px;
+  align-items: center;
+}
+.login-field__inputname,
+.login-field__inputpassword {
+  width: 18rem;
+  height: 2rem;
+  margin: 0.5rem;
+  border-radius: 5px;
+  text-align: center;
+}
+.login-buttons {
+  justify-content: space-around;
+  margin: 0.5rem;
+  margin-top: 3rem;
+}
+/*-----LOGIN IMAGE----*/
+.login-image__section {
+  background-color: black;
+  padding: 0.1rem;
+  box-shadow: 0 4px 10px 0 rgba(95, 94, 94, 0.2),
+    0 10px 18px 0 rgba(250, 247, 247, 0.19);
+  margin: 1rem;
+}
+
+/* LOGIN MOVIE BLOCK IMAGE----*/
+.movie-card {
+  margin-top: 1rem;
+  list-style-type: none;
+  box-shadow: 0 4px 10px 0 rgba(95, 94, 94, 0.2),
+    0 10px 18px 0 rgba(250, 247, 247, 0.19);
+  margin: 0.5rem;
+  justify-content: center;
+  padding: 1rem;
+  border-radius: 10px;
+}
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/*----NOT FOUND-----*/
+.not-found__container {
+  align-items: center;
+  margin-top: 4rem;
+  margin-left: 2rem;
+}
+.not-found__anchor-tag {
+  color: black;
+}
+.not-found__img {
   height: 300px;
   width: 300px;
 }
-
 
 /*-----MEDIA----*/
 @media only screen and (min-width: 870px) {
@@ -370,25 +396,23 @@ img {
   }
   .top-banner__heading {
     margin-top: 1rem;
-    font-size: 2rem ;
+    font-size: 2rem;
   }
   .search-section__info {
     margin-left: 1rem;
   }
   .form-field {
-    display: flex;
-    justify-content:center;
     margin-top: 2rem;
   }
-  .search-section__list{
+  .search-section__list {
     font-size: 1.2rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
   .search-section__list__title {
     font-size: 3rem;
     margin-bottom: 1.5rem;
   }
-  .upcoming__header, 
+  .upcoming__header,
   .most-popular__header {
     font-size: 2rem;
     text-align: left;
@@ -397,27 +421,26 @@ img {
   }
   .most-popular__list,
   .upcoming__list {
-    display:flex;
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    list-style-type: none;
   }
-  .popular-card{
-    width: 18%; 
+  .movie-card {
+    width: 18%;
     cursor: pointer;
   }
-  .favorites{
-    width:40%;
+  .favorites {
+    width: 40%;
     font-size: 1.5rem;
   }
-  .main-content{
+  .main-content {
     display: flex;
     flex-direction: row;
     border-radius: 10px;
   }
   .favorite-list {
-  margin-bottom: 1rem;
+    margin-bottom: 1rem;
   }
   .top-baner__home,
   .top-baner__login,
@@ -429,41 +452,37 @@ img {
   .top-baner__about:hover {
     background-color: rgb(39, 39, 59);
   }
-  .movie-icon{
-    padding: .5rem;
+  .movie-icon {
+    padding: 0.5rem;
   }
-  .about-header{
+  .about-header {
     font-size: 2rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
   }
-  .about-image{
+  .about-image {
     width: 500px;
     height: 300px;
   }
   .login-field__inputname,
-  .login-field__inputpassword{
+  .login-field__inputpassword {
     width: 18rem;
     margin: 1rem;
   }
-  .login-container{
+  .login-container {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
   }
-  .login-buttons{
+  .login-buttons {
     margin: 1rem;
     margin-top: 10rem;
   }
-  .login-image__section{
+  .login-image__section {
     width: 50vw;
     height: 70vh;
   }
-  .login-form__section{
-    margin-left:5rem;
+  .login-form__section {
+    margin-left: 5rem;
   }
-
 }
-
-
-

@@ -22,15 +22,15 @@
 </head>
 <body>
     <header class="top-banner">
-        <nav class="top-banner__navBar">
+        <nav class="top-banner__navBar  l-container-row">
           <i class="fas fa-film fa-3x movie-icon"></i>
-          <h1 class="top-banner__heading">My movie app</h1>
+          <h1 class="top-banner__heading header">My movie app</h1>
           <a class="active top-baner__home" href="/">Home</a>
           <a class="top-baner__login" href="/api/login">Login</a>
           <a class="top-baner__about" href="/api/about">About</a>
         </nav> 
     </header>
-    <main class="login-container">
+    <main class="login-container l-container-column">
       <section class="login-form__section">
       <form class="login-form__fieldname" id="login-form-name" action="" method="POST">
         <input
@@ -50,12 +50,12 @@
           placeholder="Password"
         />
       </form> 
-      <div class="login-buttons">
-        <input class="login-field__button" type="submit" value="Submit" />
-        <input class="login-field__cancelbutton" type="submit" value="Cancel" />
+      <div class="login-buttons l-container-row">
+        <input class="login-field__button btn" type="submit" value="Submit" />
+        <input class="login-field__cancelbutton btn" type="submit" value="Cancel" />
       </div>
     </section>
-    <section class="login-image__section">
+    <section class="login-image__section l-container-grid">
         <figure class="item item--1">
             <img
               src="../images/avengers.jpg"
