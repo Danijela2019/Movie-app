@@ -1,4 +1,39 @@
 const fsPromises = require('fs').promises;
+const fetch = require('node-fetch');
+require('dotenv').config();
+
+const promiseFetchMovies = (response) => {
+  const apikey2 = process.env.API_KEYS;
+  const popularMoviesUrl = fetch(
+    `https://api.themoviedb.org/3/movie/popular?api_key=${apikey2}&language=en-US&page=1`,
+  );
+  const upcomingMoviesUrl = fetch(
+    `https://api.themoviedb.org/3/movie/upcoming?api_key=${apikey2}&language=en-US&page=1`,
+  );
+  Promise.all([popularMoviesUrl, upcomingMoviesUrl])
+    .then((res) => Promise.all(res.map((responseApi) => responseApi.json())))
+    .then((finaldata) => {
+      const popular = finaldata[0];
+      const upcoming = finaldata[1];
+      response.json({ popular, upcoming });
+    })
+    .catch((error) => console.log(error));
+};
+
+const promiseFetchAMovie = (inputVal, response) => {
+  const apikey = process.env.API_KEY;
+  const url = `http://www.omdbapi.com/?apikey=${apikey}&t=${inputVal}`;
+  fetch(url)
+    .then((res) => {
+      if (!res.ok) {
+        throw Error(res.statusText);
+      }
+      return res;
+    })
+    .then((res) => res.json())
+    .then((data) => response.json(data))
+    .catch((error) => console.log(error));
+};
 
 const fileRead = async () => {
   const filePromise = await fsPromises.readFile(
@@ -14,7 +49,13 @@ const fileRead = async () => {
 
 const fileOperations = async (data) => {
   const parsedFile = await fileRead();
-  parsedFile.favoritesList.push(data);
+  if (data.title) {
+    parsedFile.favoritesList.push(data);
+  } else {
+    const toRemoveMovieId = parseInt(data.id, 10);
+    const updatedArray = parsedFile.favoritesList.filter((item) => item.id !== toRemoveMovieId);
+    parsedFile.favoritesList = [...updatedArray];
+  }
   const json = JSON.stringify(parsedFile, null, 2);
   await fsPromises.writeFile('dbFavorites.json', json, 'utf8', (err) => {
     if (err) throw err;
@@ -24,3 +65,5 @@ const fileOperations = async (data) => {
 
 module.exports.fileOperations = fileOperations;
 module.exports.fileRead = fileRead;
+module.exports.promiseFetchAMovie = promiseFetchAMovie;
+module.exports.promiseFetchMovies = promiseFetchMovies;

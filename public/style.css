@@ -174,7 +174,7 @@ body {
 /*-----THE MOVIE ARTICLE----*/
 .search-section {
   align-items: center;
-  margin-bottom: 1rem;
+  margin: 1rem;
   border-radius: 10px;
 }
 .search-section__info {
@@ -195,7 +195,7 @@ body {
 }
 
 /*----FAVORITES SECTION----*/
-.favorites {
+.favorites-section {
   padding-top: 1rem;
   padding-bottom: 1rem;
   border: 1px solid #444244;
@@ -203,16 +203,21 @@ body {
   background-color: rgb(8, 8, 8);
   margin: 1rem;
 }
-.favorite-title {
+.favorites__list{
+  list-style-type: none;
+  margin-left: auto;
+}
+
+.a-favorite-movie-title {
   font-family: "Noto Sans JP", sans-serif;
   text-align: center;
 }
-.favorite-list {
-  justify-content: space-between;
-  margin: 0.5rem;
+
+.a-favorite-movie {
+  list-style-type: none;
 }
 
-.favorite-remove {
+.a-favorite-movie-remove-button {
   width: 30px;
   height: 30px;
   margin-left: 2rem;
@@ -411,6 +416,9 @@ img {
   .search-section__list__title {
     font-size: 3rem;
     margin-bottom: 1.5rem;
+  }
+  .favorites-section{
+    min-width: 25rem;
   }
   .upcoming__header,
   .most-popular__header {
