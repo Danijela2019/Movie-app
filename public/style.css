@@ -1,36 +1,6 @@
 /*------BASE-----*/
-html,
-body,
-div,
-span,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-a,
-img,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-article,
-aside,
-figure,
-figcaption,
-footer,
-header,
-menu,
-nav,
-output,
-section,
-summary,
-audio,
-video {
+html,body,div,span,h1,h2,h3,h4,h5,h6,p,a,img,ol,ul,li,fieldset,form,label,article,aside,figure,
+figcaption,footer,header,menu,nav,output,section,summary,audio,video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -115,8 +85,7 @@ body {
 /*----MODULES---*/
 
 /*----HEADER---*/
-.about-header,
-.top-banner_heading {
+.about-header {
   font-size: 1.5rem;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -144,6 +113,9 @@ body {
   justify-content: space-around;
   margin-bottom: 1rem;
   background-color: black;
+}
+.top-banner__heading {
+  word-spacing: -6px;
 }
 .top-baner__home,
 .top-baner__login,
@@ -205,18 +177,16 @@ body {
 }
 .favorites__list{
   list-style-type: none;
-  margin-left: auto;
 }
-
+li  {
+  display: flex;
+  flex-direction: row ;
+justify-content: space-between;
+margin: .5rem;
+}
 .a-favorite-movie-title {
-  font-family: "Noto Sans JP", sans-serif;
-  text-align: center;
+  font-family: "Noto Sans JP", sans-serif
 }
-
-.a-favorite-movie {
-  list-style-type: none;
-}
-
 .a-favorite-movie-remove-button {
   width: 30px;
   height: 30px;
@@ -251,8 +221,8 @@ body {
 }
 .flip-card {
   background-color: transparent;
-  width: 200px;
-  height: 300px;
+  width: 240px;
+  height: 350px;
   border: 1px solid #03024e;
   perspective: 1000px;
 }
