@@ -26,7 +26,7 @@ const promiseFetchAMovie = (inputVal, response) => {
   fetch(url)
     .then((res) => {
       if (!res.ok) {
-        throw Error(res.statusText);
+        throw Error('Hello', res.statusText);
       }
       return res;
     })
