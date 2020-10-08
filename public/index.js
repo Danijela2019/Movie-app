@@ -29,7 +29,7 @@ const renderSearchedMovie = (searchData) => {
         <li>Country: ${searchData.Country}</li>
         <li>Language: ${searchData.Language}</li>
         <li>Plot: ${searchData.Plot}</li>
-        <button class="search-section__button btn" id="addbutton" onClick="addFavoriteMovie()">Add to favorites</button>
+        <button class="search-section__button btn" id="addbutton" onClick="addMovie()">Add to favorites</button>
       <ul>`;
   movieBlock.innerHTML = searchMarkup;
 };
@@ -102,64 +102,67 @@ const fetchMovies = () => {
 };
 fetchMovies();
 
-const removeFavoriteMovie = (key) => {
-  const item = document.querySelector(`[data-key='${key}']`);
-  favoriteMoviesArray.splice(favoriteMoviesArray.indexOf(item), 1);
-  item.remove();
-};
-const loadFavoritesList = (favData) => {
-  for (let i = 0; i < favData.favoritesList.length; i += 1) {
-    const favoritesMarkup = `<li class="favorite-list" data-key="${favData.favoritesList[i].id}">
-    <h4 class="favorite-title">${favData.favoritesList[i].title}</h4>
-    <button class="favorite-remove btn">X</button>
+const loadFavoritesList = (movieToAdd) => {
+  for (let i = 0; i < movieToAdd.favoritesList.length; i += 1) {
+    const favoritesMarkup = `<li class="a-favorite-movie l-container-row" data-key="${movieToAdd.favoritesList[i].id}">
+      <h4 class="a-favorite-movie-title">${movieToAdd.favoritesList[i].title}</h4>
+      <button class="a-favorite-movie-remove-button btn">X</button>
     </li>`;
     list.insertAdjacentHTML('beforeend', favoritesMarkup);
   }
 };
 
-const addMovieToFavorites = (favData) => {
-  const i = favData.favoritesList.length - 1;
-  const favoritesMarkup = `<li class="favorite-list" data-key="${favData.favoritesList[i].id}">
-    <h4 class="favorite-title">${favData.favoritesList[i].title}</h4>
-    <button class="favorite-remove btn">X</button>
-    </li>`;
-  list.insertAdjacentHTML('beforeend', favoritesMarkup);
-};
-
-const addFavoriteMovie = () => {
-  movie = {
-    title: document.getElementById('movie-title').innerHTML,
-    id: Date.now(),
-  };
+const SendDataToServer = (movieData) => {
   const options = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(movie),
+    body: JSON.stringify(movieData),
   };
   fetch('/data', options)
-    .then(handleErrors)
-    .then((res) => res.json())
-    .then((favData) => {
-      addMovieToFavorites(favData);
-    })
     .catch((err) => errorText(err));
 };
 
-const renderFavoritesList = () => {
+const addAMovieToFavoritesList = (movieToAdd) => {
+  const favoritesMarkup = `<li class=""a-favorite-movie l-container-row" data-key="${movieToAdd.id}">
+    <h4 class="a-favorite-movie-title">${movieToAdd.title}</h4>
+    <button class="a-favorite-movie-remove-button btn">X</button>
+    </li>`;
+  list.insertAdjacentHTML('beforeend', favoritesMarkup);
+};
+
+const addMovie = () => {
+  movie = {
+    title: document.getElementById('movie-title').innerHTML,
+    id: Date.now(),
+  };
+  SendDataToServer(movie);
+  addAMovieToFavoritesList(movie);
+  clearSearchedMovieSection();
+};
+
+const renderFavoritesListOnLoad = () => {
   fetch('/data')
     .then(handleErrors)
     .then((res) => res.json())
-    .then((favData) => {
-      loadFavoritesList(favData);
+    .then((movieToAdd) => {
+      loadFavoritesList(movieToAdd);
     })
-    .catch((err) => errorText(err));
+    .catch((err) => errorText('Here', err));
 };
-renderFavoritesList();
+renderFavoritesListOnLoad();
+
+const removeMovie = (key) => {
+  const item = document.querySelector(`[data-key='${key}']`);
+  const toRemoveMovieId = { id: item.getAttribute('data-key') };
+  favoriteMoviesArray.splice(favoriteMoviesArray.indexOf(item), 1);
+  item.remove();
+  SendDataToServer(toRemoveMovieId);
+};
 
 list.addEventListener('click', (event) => {
   event.stopImmediatePropagation();
   const itemKey = event.target.parentElement.dataset.key;
-  removeFavoriteMovie(itemKey);
+  removeMovie(itemKey);
 });
