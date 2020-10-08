@@ -2,8 +2,6 @@ const form = document.querySelector('#form');
 const movieBlock = document.querySelector('#movies');
 const list = document.querySelector('#favorites-ul');
 const input = document.querySelector('#form-input');
-const favoriteMoviesArray = [];
-let movie = {};
 
 const handleErrors = (res) => {
   if (!res.ok) throw Error(res.statusText);
@@ -38,32 +36,36 @@ const clearSearchedMovieSection = () => {
   movieBlock.innerHTML = '';
 };
 
+const renderWrongTiteText = (data) => {
+  document.getElementById('wrongtitle').innerHTML = `<h3>Hmm 🤔...something went wrong. ${data.Error}</h3>`;
+};
+
+const fetchSearchedMovie = (movieData) => {
+  fetch('/api', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(movieData),
+  })
+    .then(handleErrors)
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.Response !== 'False') {
+        renderSearchedMovie(data);
+        input.value = '';
+      } else {
+        renderWrongTiteText(data);
+      }
+    })
+    .catch((err) => errorText(err));
+};
+
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   clearSearchedMovieSection();
   if (input.value !== '') {
     document.getElementById('wrongtitle').innerHTML = '';
     const getSearhedMovie = { movieinput: input.value };
-    fetch('/api', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(getSearhedMovie),
-    })
-      .then(handleErrors)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.Response !== 'False') {
-          renderSearchedMovie(data);
-          input.value = '';
-        } else {
-          document.getElementById(
-            'wrongtitle',
-          ).innerHTML = `<h3>Hmm 🤔...something went wrong. ${data.Error}</h3>`;
-        }
-      })
-      .catch((err) => errorText(err));
-  } else {
-    document.getElementById('wrongtitle').innerHTML = '<h3>Hmm 🤔...seems you did not enter any title. Try again.</h3>';
+    fetchSearchedMovie(getSearhedMovie);
   }
 });
 
@@ -133,7 +135,7 @@ const addAMovieToFavoritesList = (movieToAdd) => {
 };
 
 const addMovie = () => {
-  movie = {
+  const movie = {
     title: document.getElementById('movie-title').innerHTML,
     id: Date.now(),
   };
@@ -156,7 +158,6 @@ renderFavoritesListOnLoad();
 const removeMovie = (key) => {
   const item = document.querySelector(`[data-key='${key}']`);
   const toRemoveMovieId = { id: item.getAttribute('data-key') };
-  favoriteMoviesArray.splice(favoriteMoviesArray.indexOf(item), 1);
   item.remove();
   SendDataToServer(toRemoveMovieId);
 };
