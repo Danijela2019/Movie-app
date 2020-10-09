@@ -14,60 +14,36 @@ const errorText = (error) => {
   ).innerHTML = `<h3>'Ooops..something went wrong: ${error}</h3>`;
 };
 
-const renderSearchedMovie = (searchData) => {
-  const searchMarkup = `
-      <img class="search-section__img" src=${searchData.Poster}>
-      <ul class="search-section__info">
-        <h1 class="search-section__list__title" id="movie-title">${searchData.Title}</h1>
-        <li>IMBD rating: ${searchData.imdbRating}</li>
-        <li>Released: ${searchData.Released}</li>
-        <li>Starting: ${searchData.Actors}</li>
-        <li>Genre: ${searchData.Genre}</li>
-        <li>Director: ${searchData.Director}</li>
-        <li>Country: ${searchData.Country}</li>
-        <li>Language: ${searchData.Language}</li>
-        <li>Plot: ${searchData.Plot}</li>
-        <button class="search-section__button btn" id="addbutton" onClick="createMovieObject()">Add to favorites</button>
-      <ul>`;
-  movieBlock.innerHTML = searchMarkup;
+const loadFavoritesList = (data) => {
+  for (let i = 0; i < data.favoritesList.length; i += 1) {
+    const favoritesMarkup = `<li class="a-favorite-movie" data-key="${data.favoritesList[i].id}">
+      <h4 class="a-favorite-movie-title">${data.favoritesList[i].title}</h4>
+      <button class="a-favorite-movie-remove-button ">X</button>
+    </li>`;
+    list.insertAdjacentHTML('beforeend', favoritesMarkup);
+  }
 };
+
+const renderFavoritesListOnLoad = () => {
+  fetch('/data')
+    .then(handleErrors)
+    .then((res) => res.json())
+    .then((favMoviesData) => {
+      loadFavoritesList(favMoviesData);
+    })
+    .catch((err) => errorText('Here', err));
+};
+renderFavoritesListOnLoad();
 
 const clearSearchedMovieSection = () => {
   movieBlock.innerHTML = '';
 };
 
 const renderWrongTiteText = (data) => {
-  document.getElementById('wrongtitle').innerHTML = `<h3>Hmm 🤔...something went wrong. ${data.Error}</h3>`;
+  document.getElementById(
+    'wrongtitle',
+  ).innerHTML = `<h3>Hmm 🤔...something went wrong. ${data.Error}</h3>`;
 };
-
-const fetchSearchedMovie = (movieData) => {
-  fetch('/api', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(movieData),
-  })
-    .then(handleErrors)
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.Response !== 'False') {
-        renderSearchedMovie(data);
-        input.value = '';
-      } else {
-        renderWrongTiteText(data);
-      }
-    })
-    .catch((err) => errorText(err));
-};
-
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  clearSearchedMovieSection();
-  if (input.value !== '') {
-    document.getElementById('wrongtitle').innerHTML = '';
-    const getSearhedMovie = { movieinput: input.value };
-    fetchSearchedMovie(getSearhedMovie);
-  }
-});
 
 const renderMoviesList = (movieData, renderList) => {
   for (let a = 0; a < 10; a += 1) {
@@ -104,27 +80,52 @@ const fetchMovies = () => {
 };
 fetchMovies();
 
-const loadFavoritesList = (movieToAdd) => {
-  for (let i = 0; i < movieToAdd.favoritesList.length; i += 1) {
-    const favoritesMarkup = `<li class="a-favorite-movie" data-key="${movieToAdd.favoritesList[i].id}">
-      <h4 class="a-favorite-movie-title">${movieToAdd.favoritesList[i].title}</h4>
-      <button class="a-favorite-movie-remove-button ">X</button>
-    </li>`;
-    list.insertAdjacentHTML('beforeend', favoritesMarkup);
-  }
+const renderSearchedMovie = (searchData) => {
+  const searchMarkup = `
+      <img class="search-section__img" src=${searchData.Poster}>
+      <ul class="search-section__info">
+        <h1 class="search-section__list__title" id="movie-title">${searchData.Title}</h1>
+        <li>IMBD rating: ${searchData.imdbRating}</li>
+        <li>Released: ${searchData.Released}</li>
+        <li>Starting: ${searchData.Actors}</li>
+        <li>Genre: ${searchData.Genre}</li>
+        <li>Director: ${searchData.Director}</li>
+        <li>Country: ${searchData.Country}</li>
+        <li>Language: ${searchData.Language}</li>
+        <li>Plot: ${searchData.Plot}</li>
+        <button class="search-section__button btn" id="addbutton" onClick="createMovieObject()">Add to favorites</button>
+      <ul>`;
+  movieBlock.innerHTML = searchMarkup;
 };
 
-const SendDataToServer = (movieData) => {
-  const options = {
+const fetchSearchedMovie = (movieData) => {
+  fetch('/api', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(movieData),
-  };
-  fetch('/data', options)
+  })
+    .then(handleErrors)
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.Response !== 'False') {
+        renderSearchedMovie(data);
+        input.value = '';
+      } else {
+        renderWrongTiteText(data);
+      }
+    })
     .catch((err) => errorText(err));
 };
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  clearSearchedMovieSection();
+  if (input.value !== '') {
+    document.getElementById('wrongtitle').innerHTML = '';
+    const getSearhedMovie = { movieinput: input.value };
+    fetchSearchedMovie(getSearhedMovie);
+  }
+});
 
 const addAMovieToFavoritesList = (movieToAdd) => {
   const favoritesMarkup = `<li class=""a-favorite-movie" data-key="${movieToAdd.id}">
@@ -134,32 +135,52 @@ const addAMovieToFavoritesList = (movieToAdd) => {
   list.insertAdjacentHTML('beforeend', favoritesMarkup);
 };
 
+const sendDataToServer = (movieData) => {
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(movieData),
+  };
+  fetch('/data', options).catch((err) => errorText(err));
+};
+
+const renderDuplicateMovieAdded = () => {
+  document.getElementById('wrongtitle').innerHTML = '<h3>Hmm 🤔...seems like this movie is already on your list.';
+};
+
+const checkForDuplicates = (movieTitle) => {
+  const lengthFixed = list.children.length;
+  const moviesArray = [];
+  for (let i = 0; i < lengthFixed; i += 1) {
+    const p = list.children[i].children[0].innerText;
+    moviesArray.push(p);
+  }
+  return moviesArray.includes(movieTitle);
+};
+
 const createMovieObject = () => {
   const movie = {
     title: document.getElementById('movie-title').innerHTML,
     id: Date.now(),
   };
-  SendDataToServer(movie);
-  addAMovieToFavoritesList(movie);
-  clearSearchedMovieSection();
+  const { title } = movie;
+  if (checkForDuplicates(title)) {
+    renderDuplicateMovieAdded();
+    clearSearchedMovieSection();
+  } else {
+    addAMovieToFavoritesList(movie);
+    sendDataToServer(movie);
+    clearSearchedMovieSection();
+  }
 };
-
-const renderFavoritesListOnLoad = () => {
-  fetch('/data')
-    .then(handleErrors)
-    .then((res) => res.json())
-    .then((movieToAdd) => {
-      loadFavoritesList(movieToAdd);
-    })
-    .catch((err) => errorText('Here', err));
-};
-renderFavoritesListOnLoad();
 
 const removeMovie = (key) => {
   const item = document.querySelector(`[data-key='${key}']`);
   const toRemoveMovieId = { id: item.getAttribute('data-key') };
   item.remove();
-  SendDataToServer(toRemoveMovieId);
+  sendDataToServer(toRemoveMovieId);
 };
 
 list.addEventListener('click', (event) => {
