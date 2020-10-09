@@ -24,12 +24,6 @@ const promiseFetchAMovie = (inputVal, response) => {
   const apikey = process.env.API_KEY;
   const url = `http://www.omdbapi.com/?apikey=${apikey}&t=${inputVal}`;
   fetch(url)
-    .then((res) => {
-      if (!res.ok) {
-        throw Error('Hello', res.statusText);
-      }
-      return res;
-    })
     .then((res) => res.json())
     .then((data) => response.json(data))
     .catch((error) => console.log(error));
@@ -67,3 +61,11 @@ module.exports.fileOperations = fileOperations;
 module.exports.fileRead = fileRead;
 module.exports.promiseFetchAMovie = promiseFetchAMovie;
 module.exports.promiseFetchMovies = promiseFetchMovies;
+
+
+/*.then((res) => {
+      if (!res.ok) {
+        throw Error(res.statusText);
+      }
+      return res;
+    })*/
