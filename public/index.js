@@ -83,18 +83,18 @@ fetchMovies();
 const renderSearchedMovie = (searchData) => {
   const searchMarkup = `
       <img class="search-section__img" src=${searchData.Poster}>
-      <ul class="search-section__info">
+      <div class="search-section__info">
         <h1 class="search-section__list__title" id="movie-title">${searchData.Title}</h1>
-        <li>IMBD rating: ${searchData.imdbRating}</li>
-        <li>Released: ${searchData.Released}</li>
-        <li>Starting: ${searchData.Actors}</li>
-        <li>Genre: ${searchData.Genre}</li>
-        <li>Director: ${searchData.Director}</li>
-        <li>Country: ${searchData.Country}</li>
-        <li>Language: ${searchData.Language}</li>
-        <li>Plot: ${searchData.Plot}</li>
+        <p>IMBD rating: ${searchData.imdbRating}</p>
+        <p>Released: ${searchData.Released}</p>
+        <p>Starting: ${searchData.Actors}</p>
+        <p>Genre: ${searchData.Genre}</p>
+        <p>Director: ${searchData.Director}</p>
+        <p>Country: ${searchData.Country}</p>
+        <p>Language: ${searchData.Language}</p>
+        <p>Plot: ${searchData.Plot}</p>
         <button class="search-section__button btn" id="addbutton" onClick="createMovieObject()">Add to favorites</button>
-      <ul>`;
+      <div>`;
   movieBlock.innerHTML = searchMarkup;
 };
 
@@ -160,6 +160,7 @@ const checkForDuplicates = (movieTitle) => {
   return moviesArray.includes(movieTitle);
 };
 
+// eslint-disable-next-line no-unused-vars
 const createMovieObject = () => {
   const movie = {
     title: document.getElementById('movie-title').innerHTML,
