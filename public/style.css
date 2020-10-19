@@ -143,8 +143,11 @@ body {
   margin-left: 1rem;
 }
 
+
 /*-----THE MOVIE ARTICLE----*/
 .search-section {
+  display:flex;
+  flex-direction: column;
   align-items: center;
   margin: 1rem;
   border-radius: 10px;
@@ -154,11 +157,13 @@ body {
   margin: 0.5rem;
   padding-left: 0.5rem;
   list-style-type: none;
+  height: fit-content;
 }
 .search-section__img {
   margin: 1rem;
   box-shadow: 0 4px 10px 0 rgba(95, 94, 94, 0.2),
     0 10px 18px 0 rgba(250, 247, 247, 0.19);
+    height: fit-content;
 }
 .search-section__list__title {
   font-size: 1.5rem;
@@ -168,15 +173,15 @@ body {
 
 /*----FAVORITES SECTION----*/
 .favorites-section {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  border: 1px solid #444244;
+  padding: 1rem 0 1rem 0;
+  border: 1px solid #d4abd4;
   border-radius: 10px;
   background-color: rgb(8, 8, 8);
-  margin: 1rem;
+  margin:.5rem;
 }
 .favorites__list{
   list-style-type: none;
+
 }
 li  {
   display: flex;
@@ -364,7 +369,10 @@ img {
 
 /*-----MEDIA----*/
 @media only screen and (min-width: 870px) {
-  .search-section {
+ .wrong-title-text{
+  margin:0;
+}
+.search-section {
     display: flex;
     flex-direction: row;
     width: 80%;
@@ -377,7 +385,7 @@ img {
     margin-left: 1rem;
   }
   .form-field {
-    margin-top: 2rem;
+    margin-top: 1rem;
   }
   .search-section__list {
     font-size: 1.2rem;
@@ -387,16 +395,20 @@ img {
     font-size: 3rem;
     margin-bottom: 1.5rem;
   }
-  .favorites-section{
-    min-width: 25rem;
+  .flip-card {
+    height: 300px;
   }
   .upcoming__header,
   .most-popular__header {
     font-size: 2rem;
     text-align: left;
     margin-left: 1.5rem;
-    margin-top: 3rem;
+    margin-top: 1rem;
   }
+  .most-popular__header {
+    margin:0 0 0 1rem;
+  }
+  
   .most-popular__list,
   .upcoming__list {
     display: flex;
@@ -408,9 +420,10 @@ img {
     width: 18%;
     cursor: pointer;
   }
-  .favorites {
+  .favorites-section {
     width: 40%;
-    font-size: 1.5rem;
+    font-size: 1rem;
+    margin:0 1rem 0 0;
   }
   .main-content {
     display: flex;
@@ -420,6 +433,7 @@ img {
   .favorite-list {
     margin-bottom: 1rem;
   }
+ 
   .top-baner__home,
   .top-baner__login,
   .top-baner__about {
@@ -430,8 +444,11 @@ img {
   .top-baner__about:hover {
     background-color: rgb(39, 39, 59);
   }
-  .movie-icon {
-    padding: 0.5rem;
+  .search-section{
+      display:flex;
+      flex-direction: row;
+      justify-content: center;
+      margin:0;
   }
   .about-header {
     font-size: 2rem;
