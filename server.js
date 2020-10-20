@@ -18,20 +18,17 @@ server.get('/api/about', (_req, res) => {
 server.get('/api/login', (_req, res) => {
   res.sendFile(`${__dirname}/pages/login.html`);
 });
-
+server.get('/data', async (_req, res) => {
+  res.json(await fileOperations.fileRead());
+});
 server.post('/api', (req, res) => {
   const inputVal = req.body.movieinput;
   fileOperations.promiseFetchAMovie(inputVal, res);
 });
-
-server.post('/data', async (req, res) => {
+server.post('/data', (req, res) => {
   const movie = req.body;
-  res.json(await fileOperations.fileOperations(movie));
+  res.json(fileOperations.fileOperations(movie));
 });
-server.get('/data', async (_req, res) => {
-  res.json(await fileOperations.fileRead());
-});
-
 server.get('*', (_req, res) => {
   res.status(404).sendFile(`${__dirname}/pages/NotFound.html`);
 });
