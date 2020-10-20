@@ -61,11 +61,3 @@ module.exports.fileOperations = fileOperations;
 module.exports.fileRead = fileRead;
 module.exports.promiseFetchAMovie = promiseFetchAMovie;
 module.exports.promiseFetchMovies = promiseFetchMovies;
-
-
-/*.then((res) => {
-      if (!res.ok) {
-        throw Error(res.statusText);
-      }
-      return res;
-    })*/
