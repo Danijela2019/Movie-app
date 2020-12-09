@@ -6,7 +6,7 @@ This is a simple movie application that renders the most popular and upcoming mo
 
 The application is build using only vanilla javaScript and the express framework for the backend.
 
-| ![Hero page](cover1.png)| ![Login page](cover2.png) |![About page](cover3.png) |![Searched movie](cover4.png)| ![Mobile version](cover5.png)|
+| ![Hero page](cover1.png)| ![Login page](cover2.png) |
 
 ## How to use it
 
