@@ -1,4 +1,4 @@
-# Movie api
+# Movie app
 
 ## Introduction
 
@@ -10,7 +10,7 @@ The application is build using only vanilla javaScript and the express framework
 
 ## How to use it
 
-- **Clone the repo: git@github.com:Danijela2019/Movie-app.git**
+- **Clone the repo: https://github.com/Danijela2019/Movie-app.git**
 - **Install packages: npm install**
 - **Run the 'npm start' command**
 - **Open your browser at: http://localhost:4000**
