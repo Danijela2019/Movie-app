@@ -1,6 +1,36 @@
 /*------BASE-----*/
-html,body,div,span,h1,h2,h3,h4,h5,h6,p,a,img,ol,ul,li,fieldset,form,label,article,aside,figure,
-figcaption,footer,header,menu,nav,output,section,summary,audio,video {
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+img,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+article,
+aside,
+figure,
+figcaption,
+footer,
+header,
+menu,
+nav,
+output,
+section,
+summary,
+audio,
+video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -143,10 +173,9 @@ body {
   margin-left: 1rem;
 }
 
-
 /*-----THE MOVIE ARTICLE----*/
 .search-section {
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   margin: 1rem;
@@ -163,7 +192,7 @@ body {
   margin: 1rem;
   box-shadow: 0 4px 10px 0 rgba(95, 94, 94, 0.2),
     0 10px 18px 0 rgba(250, 247, 247, 0.19);
-    height: fit-content;
+  height: fit-content;
 }
 .search-section__list__title {
   font-size: 1.5rem;
@@ -177,20 +206,19 @@ body {
   border: 1px solid #d4abd4;
   border-radius: 10px;
   background-color: rgb(8, 8, 8);
-  margin:.5rem;
+  margin: 0.5rem;
 }
-.favorites__list{
+.favorites__list {
   list-style-type: none;
-
 }
-li  {
+li {
   display: flex;
-  flex-direction: row ;
-justify-content: space-between;
-margin: .5rem;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0.5rem;
 }
 .a-favorite-movie-title {
-  font-family: "Noto Sans JP", sans-serif
+  font-family: "Noto Sans JP", sans-serif;
 }
 .a-favorite-movie-remove-button {
   width: 30px;
@@ -293,7 +321,7 @@ margin: .5rem;
 }
 /*-------ABOUT IMAGE------*/
 .about-image {
-  width: 200px;
+  width: 201px;
   height: 120px;
   margin: 1rem;
 }
@@ -369,17 +397,17 @@ img {
 
 /*-----MEDIA----*/
 
-@media only screen and (max-width: 280px){
+@media only screen and (max-width: 280px) {
   .top-banner__heading {
     margin-top: 1rem;
     font-size: 1rem;
   }
 }
 @media only screen and (min-width: 870px) {
- .wrong-title-text{
-  margin:0;
-}
-.search-section {
+  .wrong-title-text {
+    margin: 0;
+  }
+  .search-section {
     display: flex;
     flex-direction: row;
     width: 80%;
@@ -413,9 +441,9 @@ img {
     margin-top: 1rem;
   }
   .most-popular__header {
-    margin:0 0 0 1rem;
+    margin: 0 0 0 1rem;
   }
-  
+
   .most-popular__list,
   .upcoming__list {
     display: flex;
@@ -430,7 +458,7 @@ img {
   .favorites-section {
     width: 40%;
     font-size: 1rem;
-    margin:0 1rem 0 0;
+    margin: 0 1rem 0 0;
   }
   .main-content {
     display: flex;
@@ -440,7 +468,7 @@ img {
   .favorite-list {
     margin-bottom: 1rem;
   }
- 
+
   .top-baner__home,
   .top-baner__login,
   .top-baner__about {
@@ -451,11 +479,11 @@ img {
   .top-baner__about:hover {
     background-color: rgb(39, 39, 59);
   }
-  .search-section{
-      display:flex;
-      flex-direction: row;
-      justify-content: center;
-      margin:0;
+  .search-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0;
   }
   .about-header {
     font-size: 2rem;
