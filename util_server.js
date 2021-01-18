@@ -57,7 +57,16 @@ const fileOperations = async (data) => {
   return parsedFile;
 };
 
+const asyncHandler = (cb) => async (req, res, next) => {
+  try {
+    await cb(req, res, next);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports.fileOperations = fileOperations;
 module.exports.fileRead = fileRead;
 module.exports.promiseFetchAMovie = promiseFetchAMovie;
 module.exports.promiseFetchMovies = promiseFetchMovies;
+module.exports.asyncHandler = asyncHandler;
