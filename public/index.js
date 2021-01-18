@@ -31,7 +31,7 @@ const renderFavoritesListOnLoad = () => {
     .then((favMoviesData) => {
       loadFavoritesList(favMoviesData);
     })
-    .catch((err) => errorText('Here', err));
+    .catch((err) => errorText('Error fetching data from the server', err));
 };
 renderFavoritesListOnLoad();
 
@@ -160,7 +160,6 @@ const checkForDuplicates = (movieTitle) => {
   return moviesArray.includes(movieTitle);
 };
 
-// eslint-disable-next-line no-unused-vars
 const createMovieObject = () => {
   const movie = {
     title: document.getElementById('movie-title').innerHTML,
