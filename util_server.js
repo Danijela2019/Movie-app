@@ -15,7 +15,7 @@ const promiseFetchMovies = (response) => {
     .then((finaldata) => {
       const popular = finaldata[0];
       const upcoming = finaldata[1];
-      response.json({ popular, upcoming });
+      response.status(200).json({ popular, upcoming });
     })
     .catch((error) => console.log(error));
 };
@@ -25,7 +25,7 @@ const promiseFetchAMovie = (inputVal, response) => {
   const url = `http://www.omdbapi.com/?apikey=${apikey}&t=${inputVal}`;
   fetch(url)
     .then((res) => res.json())
-    .then((data) => response.json(data))
+    .then((data) => response.status(200).json(data))
     .catch((error) => console.log(error));
 };
 
@@ -65,8 +65,10 @@ const asyncHandler = (cb) => async (req, res, next) => {
   }
 };
 
-module.exports.fileOperations = fileOperations;
-module.exports.fileRead = fileRead;
-module.exports.promiseFetchAMovie = promiseFetchAMovie;
-module.exports.promiseFetchMovies = promiseFetchMovies;
-module.exports.asyncHandler = asyncHandler;
+module.exports = {
+  fileOperations,
+  fileRead,
+  promiseFetchAMovie,
+  promiseFetchMovies,
+  asyncHandler
+}

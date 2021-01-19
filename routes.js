@@ -6,13 +6,13 @@ router.get('/api/movies', utilities.asyncHandler((_req, res) => {
     utilities.promiseFetchMovies(res);
   }));
   router.get('/api/about', utilities.asyncHandler((_req, res) => {
-    res.sendFile(`${__dirname}/pages/about.html`);
+    res.status(200).sendFile(`${__dirname}/pages/about.html`);
   }));
   router.get('/api/login', utilities.asyncHandler((_req, res) => {
-    res.sendFile(`${__dirname}/pages/login.html`);
+    res.status(200).sendFile(`${__dirname}/pages/login.html`);
   }));
   router.get('/data', utilities.asyncHandler(async (_req, res) => {
-    res.json(await utilities.fileRead());
+    res.status(200).json(await utilities.fileRead());
   }));
   router.post('/api', utilities.asyncHandler((req, res) => {
     const inputVal = req.body.movieinput;
@@ -20,7 +20,7 @@ router.get('/api/movies', utilities.asyncHandler((_req, res) => {
   }));
   router.post('/data', utilities.asyncHandler((req, res) => {
     const movie = req.body;
-    res.json(utilities.fileOperations(movie));
+    res.status(201).json(utilities.fileOperations(movie));
   }));
   router.get('*', (_req, res) => {
     res.status(404).sendFile(`${__dirname}/pages/NotFound.html`);
